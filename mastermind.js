@@ -1,9 +1,4 @@
-
-const input = document.querySelector('button');
-const instructions = document.getElementById('instructions');
-const challenge = document.querySelector('select');
-
-input.addEventListener('click', setCode);
+//Functions
 
 function setCode() {
     let difficulty = challenge.value;
@@ -39,3 +34,14 @@ function randomLetter() {
     let randomizer = +getRandomInt(26) - 1;
     return(alphabet[randomizer]);
   }
+
+
+//DOM Variables
+const input = document.querySelector('button');
+const instructions = document.getElementById('instructions');
+const challenge = document.querySelector('select');
+
+
+//Listeners
+
+input.addEventListener('click', setCode);
