@@ -1,6 +1,7 @@
-// Open variables
+// Open global variables
 
 var code;
+var attempt;
 
 //Functions
 
@@ -45,7 +46,24 @@ function randomLetter() {
 
 // Give feedback based on user's guess
 
+function checkAttempt() {
+    let attempt = getAttempt();
+    alert(code);
+    if (code == null) {
+        alert("Generate a code first!");
+    } else if (attempt == "") {
+        alert("You must enter a guess!");
+    } else if (attempt === code) {
+        alert("yes!");
+    } else {
+        alert("no!")
+    }
+}
 
+function getAttempt() {
+    let attempt = guess.value;
+    return(attempt);
+}
 
 //
 
@@ -54,8 +72,10 @@ function randomLetter() {
 const input = document.querySelector('button');
 const instructions = document.getElementById('instructions');
 const challenge = document.querySelector('select');
-
+const guess = document.getElementById('guess'); 
+const blah = document.getElementById('attempt');
 
 //Listeners
 
 code = input.addEventListener('click', setCode);
+attempt = blah.addEventListener('click', getAttempt);
