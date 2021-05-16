@@ -1,9 +1,16 @@
+// Open variables
+
+var code;
+
 //Functions
+
+
+// User selects difficulty and generates code to guess
 
 function setCode() {
     let difficulty = challenge.value;
-    var code = generateCode(difficulty);
-    alert(code);
+    code = generateCode(difficulty);
+    return(code);
 }
 
 function generateCode(difficulty) {
@@ -36,6 +43,13 @@ function randomLetter() {
   }
 
 
+// Give feedback based on user's guess
+
+
+
+//
+
+
 //DOM Variables
 const input = document.querySelector('button');
 const instructions = document.getElementById('instructions');
@@ -44,4 +58,4 @@ const challenge = document.querySelector('select');
 
 //Listeners
 
-input.addEventListener('click', setCode);
+code = input.addEventListener('click', setCode);
