@@ -2,6 +2,7 @@
 
 var code;
 var attempt;
+var guessCount = 0;
 
 //Functions
 
@@ -44,20 +45,23 @@ function randomLetter() {
   }
 
 
-// Give feedback based on user's guess
+// Count user's guess, assess win conidtion, and give feedback
 
 function checkAttempt() {
     let attempt = getAttempt();
-    alert(code);
+
     if (code == null) {
-        alert("Generate a code first!");
-    } else if (attempt == "") {
-        alert("You must enter a guess!");
-    } else if (attempt === code) {
-        alert("yes!");
-    } else {
-        alert("no!")
-    }
+            alert("Generate a code first!");
+        } else if (attempt == "") {
+            alert("You must enter a guess!");
+        } else if (attempt == code) {
+            alert("Congratulations - you guessed right!");
+        } else if (guessCount == 8 ) {
+            alert("You are out of guesses - you lose!");
+        } else {
+            alert("That guess does not match");
+            return(guessCount++);
+        }
 }
 
 function getAttempt() {
@@ -65,8 +69,9 @@ function getAttempt() {
     return(attempt);
 }
 
-//
-
+function feedback() {
+    guessCountDisplay.innerHTML = guessCount;
+}
 
 //DOM Variables
 const input = document.querySelector('button');
@@ -75,8 +80,13 @@ const challenge = document.querySelector('select');
 const guess = document.getElementById('guess'); 
 // "blah" is not an appropriate variable...
 const blah = document.getElementById('attempt');
+const guessCountDisplay = document.getElementById("guessCount");
 
 //Listeners
 
 code = input.addEventListener('click', setCode);
-attempt = blah.addEventListener('click', getAttempt);
+attempt = blah.addEventListener('click', checkAttempt);
+
+//Executable
+
+feedback();
