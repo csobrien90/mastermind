@@ -73,6 +73,7 @@ const input = document.querySelector('button');
 const instructions = document.getElementById('instructions');
 const challenge = document.querySelector('select');
 const guess = document.getElementById('guess'); 
+// "blah" is not an appropriate variable...
 const blah = document.getElementById('attempt');
 
 //Listeners
