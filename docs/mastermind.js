@@ -6,7 +6,6 @@ var guessCount = 0;
 
 //Functions
 
-
 // User selects difficulty and generates code to guess
 
 function setCode() {
@@ -44,11 +43,18 @@ function randomLetter() {
     return(alphabet[randomizer]);
   }
 
-
 // Count user's guess, assess win conidtion, and give feedback
 
 function checkAttempt() {
     let attempt = getAttempt();
+    let double;
+    var log = document.querySelectorAll('#guessLog li'); 
+        
+    for (i=0; i < log.length; i++) {
+        if (log[i].innerHTML == attempt) {
+            double = true;
+        }
+    }
 
     if (code == null) {
             alert("Generate a code first!");
@@ -56,10 +62,14 @@ function checkAttempt() {
             alert("You must enter a guess!");
         } else if (attempt == code) {
             alert("Congratulations - you guessed right!");
+            location.reload();
+            return false;
         } else if (guessCount == 8 ) {
             alert("You are out of guesses - you lose!");
             location.reload();
             return false;
+        } else if (double) {
+            alert("You have already guessed that! Please try again.");
         } else {
             alert("That guess does not match");
             guessCount++;
@@ -86,6 +96,7 @@ function showGuessLog() {
 }
 
 //DOM Variables
+
 var input = document.querySelector('button');
 var instructions = document.getElementById('instructions');
 var challenge = document.querySelector('select');
@@ -93,7 +104,6 @@ var guess = document.getElementById('guess');
 var attemptSubmit = document.getElementById('attempt');
 var guessCountDisplay = document.getElementById("guessCount");
 var guessLog = document.getElementById('guessLog');
-
 
 //Listeners
 
