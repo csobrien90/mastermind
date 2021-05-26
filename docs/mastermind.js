@@ -60,7 +60,9 @@ function checkAttempt() {
             alert("You are out of guesses - you lose!");
         } else {
             alert("That guess does not match");
-            return(guessCount++);
+            guessCount++;
+            displayCount();
+            return(guessCount);
         }
 }
 
@@ -69,7 +71,7 @@ function getAttempt() {
     return(attempt);
 }
 
-function feedback() {
+function displayCount() {
     guessCountDisplay.innerHTML = guessCount;
 }
 
@@ -88,5 +90,3 @@ code = input.addEventListener('click', setCode);
 attempt = blah.addEventListener('click', checkAttempt);
 
 //Executable
-
-feedback();
