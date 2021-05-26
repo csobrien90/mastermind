@@ -58,10 +58,13 @@ function checkAttempt() {
             alert("Congratulations - you guessed right!");
         } else if (guessCount == 8 ) {
             alert("You are out of guesses - you lose!");
+            location.reload();
+            return false;
         } else {
             alert("That guess does not match");
             guessCount++;
             displayCount();
+            showGuessLog();
             return(guessCount);
         }
 }
@@ -75,14 +78,23 @@ function displayCount() {
     guessCountDisplay.innerHTML = guessCount;
 }
 
+function showGuessLog() {
+    let guess = getAttempt();
+    var entry = document.createElement('li');
+    entry.appendChild(document.createTextNode(guess));
+    guessLog.appendChild(entry);
+}
+
 //DOM Variables
-const input = document.querySelector('button');
-const instructions = document.getElementById('instructions');
-const challenge = document.querySelector('select');
-const guess = document.getElementById('guess'); 
+var input = document.querySelector('button');
+var instructions = document.getElementById('instructions');
+var challenge = document.querySelector('select');
+var guess = document.getElementById('guess'); 
 // "blah" is not an appropriate variable...
-const blah = document.getElementById('attempt');
-const guessCountDisplay = document.getElementById("guessCount");
+var blah = document.getElementById('attempt');
+var guessCountDisplay = document.getElementById("guessCount");
+var guessLog = document.getElementById('guessLog');
+
 
 //Listeners
 
