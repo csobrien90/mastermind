@@ -90,8 +90,7 @@ var input = document.querySelector('button');
 var instructions = document.getElementById('instructions');
 var challenge = document.querySelector('select');
 var guess = document.getElementById('guess'); 
-// "blah" is not an appropriate variable...
-var blah = document.getElementById('attempt');
+var attemptSubmit = document.getElementById('attempt');
 var guessCountDisplay = document.getElementById("guessCount");
 var guessLog = document.getElementById('guessLog');
 
@@ -99,6 +98,6 @@ var guessLog = document.getElementById('guessLog');
 //Listeners
 
 code = input.addEventListener('click', setCode);
-attempt = blah.addEventListener('click', checkAttempt);
+attempt = attemptSubmit.addEventListener('click', checkAttempt);
 
 //Executable
