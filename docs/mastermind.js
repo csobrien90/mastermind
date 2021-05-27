@@ -47,14 +47,7 @@ function randomLetter() {
 
 function checkAttempt() {
     let attempt = getAttempt();
-    let double;
-    var log = document.querySelectorAll('#guessLog li'); 
-        
-    for (i=0; i < log.length; i++) {
-        if (log[i].innerHTML == attempt) {
-            double = true;
-        }
-    }
+    let double = duplicateCheck();
 
     if (code == null) {
             alert("Generate a code first!");
@@ -93,6 +86,16 @@ function showGuessLog() {
     var entry = document.createElement('li');
     entry.appendChild(document.createTextNode(guess));
     guessLog.appendChild(entry);
+}
+
+function duplicateCheck() {
+    let attempt = getAttempt();
+    let log = document.querySelectorAll('#guessLog li'); 
+    for (i=0; i < log.length; i++) {
+        if (log[i].innerHTML == attempt) {
+            return(true);
+        }
+    }
 }
 
 //DOM Variables
