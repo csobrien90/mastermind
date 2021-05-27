@@ -2,13 +2,16 @@
 
 var code;
 var attempt;
-var guessCount = 0;
+var guessCount;
 
 //Functions
 
 // User selects difficulty and generates code to guess
 
 function setCode() {
+    guessLog.innerHTML = null;
+    guessCountDisplay.innerHTML = 0;
+    guessCount = 0;
     let difficulty = challenge.value;
     code = generateCode(difficulty);
     return(code);
