@@ -60,14 +60,14 @@ function checkAttempt() {
             alert("Congratulations - you guessed right!");
             location.reload();
             return false;
-        } else if (guessCount == 8 ) {
-            alert("You are out of guesses - you lose!");
+        } else if (guessCount == 8) {
+            alert(`You are out of guesses - you lose! The code was: ${code}`);
             location.reload();
             return false;
         } else if (double) {
             alert("You have already guessed that! Please try again.");
         } else {
-            alert("That guess does not match");
+            alert( giveFeedback() );
             guessCount++;
             displayCount();
             showGuessLog();
@@ -99,6 +99,40 @@ function duplicateCheck() {
             return(true);
         }
     }
+}
+
+function giveFeedback() {
+
+//check digits of attempt against digits of code and give feedback a la mastermind game
+//compare attempt and code for number correct
+
+let attempt = getAttempt();
+let totalCorrect = 0;
+let correctPosition = 0;
+
+for (codeDigit of code) { 
+    for (guessDigit of attempt) { 
+        if (guessDigit == codeDigit) {
+        totalCorrect++;
+        break;
+        }
+    }
+}
+
+//compare attempt and code for correct number and position
+
+for (let i = 0; i < code.length; i++) {
+    if (code[i] == attempt[i]) {
+        correctPosition++;
+    }
+}
+
+//issue statement with numbers of fully correct and partially correct
+
+    alert(`${totalCorrect} of your digits are correct.`);
+    alert(`${correctPosition} are in the correct position.`);
+
+    return "That guess does not match";
 }
 
 //DOM Variables
