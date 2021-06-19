@@ -6,22 +6,26 @@
         <script src="mastermind.js" defer></script>
     </head>
     <body>
-        <h1>Mastermind Game</h1>
+        <h1>Mastermind</h1>
         <p>Set the difficulty:</p>
         <select>
+            <option value="none"></option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
         </select>
-        <button>Generate new code</button>
-        <h3>Instructions</h3>
-        <p id="instructions"></p>
-        <form onsubmit="return false">
-            <label name="guess">Guess:</label>
-            <input type="text" name="guess" id="guess">
-            <button id="attempt">Submit Guess</button>
-        </form>
-        <p>Guess #<span id="guessCount">0</span> of 8.</p>
-        <p>Your guesses:</p><ul id="guessLog"></ul>
+        <div>
+            <h3 id="instructionsTitle" style="display: none">Instructions</h3>
+            <p id="instructions"></p>
+        </div>
+        <div id="guessDiv" style="display: none">
+            <form onsubmit="return false">
+                <label name="guess">Guess:</label>
+                <input type="text" name="guess" id="guess">
+                <button id="attempt">Submit Guess</button>
+            </form>
+            <p>Guess #<span id="guessCount"></span> of 8.</p>
+            <p>Your guesses:</p><ul id="guessLog"></ul>
+        </div>
     </body>
 </html>

@@ -3,6 +3,7 @@
 var code;
 var attempt;
 var guessCount;
+var guessLength;
 
 //Functions
 
@@ -10,8 +11,8 @@ var guessCount;
 
 function setCode() {
     guessLog.innerHTML = null;
-    guessCountDisplay.innerHTML = 0;
-    guessCount = 0;
+    guessCountDisplay.innerHTML = 1;
+    guessCount = 1;
     let difficulty = challenge.value;
     code = generateCode(difficulty);
     return(code);
@@ -23,14 +24,19 @@ function generateCode(difficulty) {
     if (difficulty == "easy") {
         code = getRandomInt(3) + getRandomInt(3) + getRandomInt(3);
         howTo = "Easy Mode: Guess the three digit code. Each digit is between 1 and 3.";
+        guessLength = 3;
     } else if (difficulty == "medium") {
         code = getRandomInt(9) + getRandomInt(9) + getRandomInt(9) + getRandomInt(9);
         howTo = "Medium Mode: Guess the four digit code. Each digit is between 1 and 9.";
+        guessLength = 4;
     } else {
         code = randomLetter() + randomLetter() + randomLetter() + randomLetter();
         howTo = "Hard Mode: Guess the sequence of four random lowercase letters.";
+        guessLength = 4;
     }
     instructions.innerHTML = howTo;
+    instructionsTitle.style.display = 'unset';
+    guessDiv.style.display = 'unset';
     return(code);
 }
 
@@ -56,12 +62,10 @@ function checkAttempt() {
             alert("Generate a code first!");
         } else if (attempt == "") {
             alert("You must enter a guess!");
+        } else if (attempt.length != guessLength) {
+            alert(`Your guess is invalid - it must be ${guessLength} characters long.`)
         } else if (attempt == code) {
             alert("Congratulations - you guessed right!");
-            location.reload();
-            return false;
-        } else if (guessCount == 8) {
-            alert(`You are out of guesses - you lose! The code was: ${code}`);
             location.reload();
             return false;
         } else if (double) {
@@ -71,6 +75,11 @@ function checkAttempt() {
             guessCount++;
             displayCount();
             showGuessLog();
+            if (guessCount == 9) {
+                alert(`You are out of guesses - you lose! The code was: ${code}`);
+                location.reload();
+                return false;
+            }
             return(guessCount);
         }
 }
@@ -137,17 +146,16 @@ for (let i = 0; i < code.length; i++) {
 
 //DOM Variables
 
-var input = document.querySelector('button');
 var instructions = document.getElementById('instructions');
 var challenge = document.querySelector('select');
 var guess = document.getElementById('guess'); 
 var attemptSubmit = document.getElementById('attempt');
 var guessCountDisplay = document.getElementById("guessCount");
 var guessLog = document.getElementById('guessLog');
+var instructionsTitle = document.getElementById('instructionsTitle');
+var guessDiv = document.getElementById('guessDiv');
 
 //Listeners
 
-code = input.addEventListener('click', setCode);
+code = challenge.addEventListener('change', setCode);
 attempt = attemptSubmit.addEventListener('click', checkAttempt);
-
-//Executable
