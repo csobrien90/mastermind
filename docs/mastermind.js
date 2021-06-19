@@ -9,11 +9,10 @@ var guessLength;
 
 // User selects difficulty and generates code to guess
 
-function setCode() {
+function setCode(difficulty) {
     guessLog.innerHTML = null;
     guessCountDisplay.innerHTML = 1;
     guessCount = 1;
-    let difficulty = challenge.value;
     code = generateCode(difficulty);
     return(code);
 }
@@ -153,9 +152,9 @@ var attemptSubmit = document.getElementById('attempt');
 var guessCountDisplay = document.getElementById("guessCount");
 var guessLog = document.getElementById('guessLog');
 var instructionsTitle = document.getElementById('instructionsTitle');
-var guessDiv = document.getElementById('guessDiv');
+var guessDiv = document.getElementById('guessSection');
 
 //Listeners
 
-code = challenge.addEventListener('change', setCode);
+// code = challenge.addEventListener('change', setCode);
 attempt = attemptSubmit.addEventListener('click', checkAttempt);

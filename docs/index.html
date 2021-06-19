@@ -1,31 +1,66 @@
 <!DOCTYPE html>
 
 <html>
+
     <head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link rel="stylesheet" href="styles.css">
         <title>Play Chad's Mastermind Game</title>
         <script src="mastermind.js" defer></script>
     </head>
+
     <body>
-        <h1>Mastermind</h1>
-        <p>Set the difficulty:</p>
-        <select>
-            <option value="none"></option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select>
-        <div>
-            <h3 id="instructionsTitle" style="display: none">Instructions</h3>
-            <p id="instructions"></p>
+        <div id="paper">
+        <div id="pattern">
+
+            <main>
+
+                <header>
+                    <h1>Code Breaker</h1>
+                </header>
+
+                <section>
+
+                    <form id="difficulty">
+                        <p>Select a difficulty:</p>
+                        <input type="radio" id="easy" class="difficultySelectors" name="difficulty" value="easy" onclick="setCode('easy')">
+                        <label for="easy">Easy</label><br>
+                        <input type="radio" id="medium" class="difficultySelectors" name="difficulty" value="medium" onclick="setCode('medium')">
+                        <label for="medium">Medium</label><br>
+                        <input type="radio" id="hard" class="difficultySelectors" name="difficulty" value="hard" onclick="setCode('hard')">
+                        <label for="hard">Hard</label>
+                    </form>
+
+                    <article id="instructionDiv">
+                        <h3 id="instructionsTitle" style="display: none">Instructions</h3>
+                        <p id="instructions"></p>
+                    </article>
+
+                </section>
+
+
+                <section id="guessSection" style="display: none">
+
+                    <article id="guessDiv">
+
+                        <p>Guess #<span id="guessCount"></span> of 8</p>
+
+                        <form onsubmit="return false">
+                            <label name="guess">Guess:</label>
+                            <input type="text" name="guess" id="guess">
+                            <button id="attempt">Submit Guess</button>
+                        </form>
+
+                    </article>
+
+                    <p>Your guesses:</p><ul id="guessLog"></ul>
+
+                </section>
+                
+            </main>
+
         </div>
-        <div id="guessDiv" style="display: none">
-            <form onsubmit="return false">
-                <label name="guess">Guess:</label>
-                <input type="text" name="guess" id="guess">
-                <button id="attempt">Submit Guess</button>
-            </form>
-            <p>Guess #<span id="guessCount"></span> of 8.</p>
-            <p>Your guesses:</p><ul id="guessLog"></ul>
         </div>
     </body>
+
 </html>

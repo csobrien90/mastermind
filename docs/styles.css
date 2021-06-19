@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Kalam', cursive;
+}
+
+body {
+  background-color: lightgrey;
+}
+
+#paper {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 80px;
+  position: relative;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px #888;
+}
+
+#paper::before {
+content: '';
+width: 2px;
+height: 100%;
+position: absolute;
+top: 0;
+left: 40px;
+background-color: rgba(255,0,0,0.6);
+}
+
+#pattern {
+  background-color: white;
+  min-height: 100vh;
+  padding-left: 44px;
+  background-image: repeating-linear-gradient(white 0px, white 24px, teal 25px);
+}
+
+main {
+  position: absolute;
+  top: 56px;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+#difficulty {
+  padding-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#difficulty p {
+  flex-basis: 100%;
+}
+
+input[type="radio"], label {
+  flex-grow: 1;
+}
+
+#instructionDiv, #guessDiv {
+  margin-top: 26px;
+  line-height: 26px;
+}
+
+
+@media screen and (min-width: 900px) {
+  #paper {
+    width: 80%;
+    margin: 20px auto;
+    padding-top: 100px;
+  }
+
+  #pattern {
+    padding-left: 50px;
+  }
+
+  main {
+    top: 36px;
+  }
+
+  h1 {
+    font-size: 5em;
+  }
+
+  #difficulty p {
+    flex-basis: unset;
+  }
+  
+}
