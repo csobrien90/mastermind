@@ -70,10 +70,10 @@ function checkAttempt() {
         } else if (double) {
             alert("You have already guessed that! Please try again.");
         } else {
-            alert( giveFeedback() );
             guessCount++;
             displayCount();
             showGuessLog();
+            giveFeedback();
             if (guessCount == 9) {
                 alert(`You are out of guesses - you lose! The code was: ${code}`);
                 location.reload();
@@ -94,14 +94,14 @@ function displayCount() {
 
 function showGuessLog() {
     let guess = getAttempt();
-    var entry = document.createElement('li');
+    var entry = document.createElement('td');
     entry.appendChild(document.createTextNode(guess));
-    guessLog.appendChild(entry);
+    guessTable.appendChild(entry);
 }
 
 function duplicateCheck() {
     let attempt = getAttempt();
-    let log = document.querySelectorAll('#guessLog li'); 
+    let log = document.querySelectorAll('#guessTable tbody tr td'); 
     for (i=0; i < log.length; i++) {
         if (log[i].innerHTML == attempt) {
             return(true);
@@ -111,36 +111,36 @@ function duplicateCheck() {
 
 function giveFeedback() {
 
-//check digits of attempt against digits of code and give feedback a la mastermind game
-//compare attempt and code for number correct
+    //check digits of attempt against digits of code and give feedback a la mastermind game
+    //compare attempt and code for number correct
 
-let attempt = getAttempt();
-let totalCorrect = 0;
-let correctPosition = 0;
+    let attempt = getAttempt();
+    let totalCorrect = 0;
+    let correctPosition = 0;
 
-for (codeDigit of code) { 
-    for (guessDigit of attempt) { 
-        if (guessDigit == codeDigit) {
-        totalCorrect++;
-        break;
+    for (codeDigit of code) { 
+        for (guessDigit of attempt) { 
+            if (guessDigit == codeDigit) {
+            totalCorrect++;
+            break;
+            }
         }
     }
-}
 
-//compare attempt and code for correct number and position
+    //compare attempt and code for correct number and position
 
-for (let i = 0; i < code.length; i++) {
-    if (code[i] == attempt[i]) {
-        correctPosition++;
+    for (let i = 0; i < code.length; i++) {
+        if (code[i] == attempt[i]) {
+            correctPosition++;
+        }
     }
-}
 
-//issue statement with numbers of fully correct and partially correct
-
-    alert(`${totalCorrect} of your digits are correct.`);
-    alert(`${correctPosition} are in the correct position.`);
-
-    return "That guess does not match";
+    //issue statement with numbers of fully correct and partially correct
+    var entry = document.createElement('td');
+    var feedback = `${totalCorrect} correct digit(s); ${correctPosition} correctly positioned`
+    entry.appendChild(document.createTextNode(feedback));
+    guessTable.appendChild(entry);
+    guessTable.innerHTML += ``;
 }
 
 //DOM Variables
@@ -150,11 +150,10 @@ var challenge = document.querySelector('select');
 var guess = document.getElementById('guess'); 
 var attemptSubmit = document.getElementById('attempt');
 var guessCountDisplay = document.getElementById("guessCount");
-var guessLog = document.getElementById('guessLog');
+var guessTable = document.getElementById('guessTable');
 var instructionsTitle = document.getElementById('instructionsTitle');
 var guessDiv = document.getElementById('guessSection');
 
 //Listeners
 
-// code = challenge.addEventListener('change', setCode);
 attempt = attemptSubmit.addEventListener('click', checkAttempt);

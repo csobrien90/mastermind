@@ -62,8 +62,26 @@ input[type="radio"], label {
 }
 
 #instructionDiv, #guessDiv {
-  margin-top: 26px;
+  margin-top: 25px;
   line-height: 26px;
+}
+
+#guessDiv form {
+  padding: 19px 0;
+}
+
+#guessLog {
+  padding-top: 24px;
+}
+
+#guess {
+  /* border: none; */
+  height: 24px;
+}
+
+#guessTable tr th {
+  min-width: 100px;
+  text-align: left;
 }
 
 
