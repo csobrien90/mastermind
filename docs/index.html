@@ -43,7 +43,6 @@
 
                     <article id="guessDiv">
 
-                        <p>Guess #<span id="guessCount"></span> of 8</p>
                         <table id="guessTable">
                             <tr>
                                 <th>Guess</th>
@@ -52,8 +51,8 @@
                             <tr id="guessLog"></tr>
                         </table>
 
-                        <form onsubmit="return false">
-                            <label name="guess">Guess:</label>
+                        <form onsubmit="return false" autocomplete="off">
+                            <label name="guess">Guess #<span id="guessCount"></span> of 8</label>
                             <input type="text" name="guess" id="guess">
                             <button id="attempt">Submit Guess</button>
                         </form>
