@@ -1,7 +1,0 @@
-Game Function:
-
-- accept guesses and compare with code
-
-Style:
-
-- add Style
