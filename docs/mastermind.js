@@ -74,6 +74,7 @@ function checkAttempt() {
             displayCount();
             showGuessLog();
             giveFeedback();
+            guess.value = "";
             if (guessCount == 9) {
                 alert(`You are out of guesses - you lose! The code was: ${code}`);
                 location.reload();
@@ -117,18 +118,24 @@ function giveFeedback() {
     let attempt = getAttempt();
     let totalCorrect = 0;
     let correctPosition = 0;
+    let codeArray = []
 
-    for (codeDigit of code) { 
-        for (guessDigit of attempt) { 
-            if (guessDigit == codeDigit) {
-            totalCorrect++;
-            break;
+    for (digit in code) {
+        codeArray.push(code[digit]);
+    }
+
+    for (let j = 0; j < attempt.length; j++) {
+        for (let i = 0; i < code.length; i++) {
+            if (attempt[j] == codeArray[i]) {
+                totalCorrect++;
+                codeArray.splice(i, 1);
+                break;
             }
         }
     }
-
+    
     //compare attempt and code for correct number and position
-
+    
     for (let i = 0; i < code.length; i++) {
         if (code[i] == attempt[i]) {
             correctPosition++;
